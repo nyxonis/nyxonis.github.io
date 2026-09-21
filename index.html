@@ -38,6 +38,7 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            pointer-events: none;
         }
 
         body {
@@ -65,7 +66,7 @@
                 radial-gradient(circle at 18% 15%, rgba(60, 90, 130, 0.35), transparent 45%),
                 radial-gradient(circle at 85% 20%, rgba(90, 60, 130, 0.25), transparent 45%),
                 radial-gradient(circle at 50% 100%, rgba(30, 50, 80, 0.4), transparent 55%),
-                linear-gradient(160deg, #0a0c12 0%, #10131c 45%, #0a0c12 100%);
+                linear-gradient(160deg, rgba(10, 12, 18, 0.55) 0%, rgba(16, 19, 28, 0.5) 45%, rgba(10, 12, 18, 0.55) 100%);
             z-index: -1;
             pointer-events: none;
         }
@@ -197,32 +198,34 @@
             font-weight: 700;
             color: #ece8e0;
             letter-spacing: -0.3px;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
-        .profile-badge {
+        .typing-about {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(10px, 2.8vw, 12px);
+            font-weight: 400;
+            color: #8a9aaa;
+            letter-spacing: 0.3px;
+            min-height: clamp(16px, 4vw, 20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .typing-about .cursor {
             display: inline-block;
-            margin: 6px 0 10px;
+            width: 1.5px;
+            height: clamp(11px, 3vw, 14px);
+            background: #8a9aaa;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
         }
 
-        .profile-badge img {
-            height: clamp(20px, 5.5vw, 26px);
-            width: auto;
-            border-radius: 6px;
-        }
-
-        .role-tag {
-            display: inline-block;
-            background: rgba(26, 34, 46, 0.7);
-            border: 1px solid rgba(42, 52, 68, 0.5);
-            padding: clamp(3px, 1vw, 4px) clamp(14px, 5vw, 22px);
-            border-radius: 30px;
-            font-size: clamp(10px, 2.8vw, 11px);
-            font-weight: 500;
-            color: #a0b0be;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            backdrop-filter: blur(4px);
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         .divider {
@@ -269,58 +272,42 @@
         }
 
         .social-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: clamp(6px, 2.2vw, 10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(10px, 3vw, 16px);
             position: relative;
             z-index: 1;
+            padding: clamp(4px, 1.5vw, 8px) 0;
         }
 
         .social-item {
-            background: rgba(18, 24, 34, 0.5);
-            border: 1px solid rgba(42, 52, 68, 0.3);
-            border-radius: clamp(12px, 3.5vw, 16px);
-            padding: clamp(10px, 3.5vw, 16px) clamp(3px, 1.5vw, 6px);
-            text-align: center;
-            text-decoration: none;
-            color: #b0c0ce;
-            transition: all 0.25s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            backdrop-filter: blur(4px);
-            min-width: 0;
-        }
-
-        .social-item:hover {
-            background: rgba(26, 34, 46, 0.7);
-            border-color: rgba(90, 106, 122, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-item .social-icon {
-            width: clamp(24px, 7.5vw, 34px);
-            height: clamp(24px, 7.5vw, 34px);
             display: flex;
             align-items: center;
             justify-content: center;
+            width: clamp(36px, 10vw, 44px);
+            height: clamp(36px, 10vw, 44px);
+            border-radius: 50%;
+            background: rgba(18, 24, 34, 0.5);
+            border: 1px solid rgba(42, 52, 68, 0.3);
+            color: #8a9aaa;
+            transition: all 0.25s ease;
+            text-decoration: none;
             flex-shrink: 0;
         }
 
-        .social-item .social-icon svg {
-            width: clamp(20px, 6.5vw, 30px);
-            height: clamp(20px, 6.5vw, 30px);
-            fill: currentColor;
+        .social-item:hover {
+            background: rgba(26, 34, 46, 0.8);
+            border-color: rgba(90, 106, 122, 0.6);
+            color: #ece8e0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .social-item .social-label {
-            font-size: clamp(7px, 2.2vw, 8px);
-            font-weight: 500;
-            color: #6a7a8a;
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
+        .social-item svg {
+            width: clamp(18px, 5vw, 22px);
+            height: clamp(18px, 5vw, 22px);
+            fill: currentColor;
         }
 
         .music-player {
@@ -329,21 +316,25 @@
             background: rgba(18, 24, 34, 0.5);
             border: 1px solid rgba(42, 52, 68, 0.3);
             border-radius: clamp(12px, 3.5vw, 16px);
-            padding: clamp(12px, 3vw, 18px);
+            padding: clamp(12px, 3vw, 16px);
             margin-top: clamp(10px, 2.5vw, 14px);
-            display: flex;
-            align-items: center;
-            gap: clamp(10px, 2.5vw, 16px);
             backdrop-filter: blur(4px);
         }
 
+        .music-player .player-top {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 2.5vw, 14px);
+        }
+
         .music-player .cover {
-            width: clamp(44px, 12vw, 56px);
-            height: clamp(44px, 12vw, 56px);
+            width: clamp(44px, 12vw, 52px);
+            height: clamp(44px, 12vw, 52px);
             border-radius: 8px;
             flex-shrink: 0;
             overflow: hidden;
             background: #1a222e;
+            position: relative;
         }
 
         .music-player .cover img {
@@ -351,6 +342,15 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .music-player .cover img.active {
+            opacity: 1;
         }
 
         .music-player .track-info {
@@ -359,24 +359,26 @@
         }
 
         .music-player .track-name {
-            font-size: clamp(12px, 3.2vw, 15px);
+            font-size: clamp(12px, 3.2vw, 14px);
             font-weight: 600;
             color: #ece8e0;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            line-height: 1.3;
         }
 
         .music-player .track-artist {
-            font-size: clamp(9px, 2.2vw, 11px);
+            font-size: clamp(9px, 2.2vw, 10px);
             color: #6a7a8a;
             font-weight: 400;
+            line-height: 1.3;
         }
 
         .music-player .controls {
             display: flex;
             align-items: center;
-            gap: clamp(6px, 1.5vw, 10px);
+            gap: clamp(4px, 1.2vw, 8px);
             flex-shrink: 0;
         }
 
@@ -384,8 +386,8 @@
             background: rgba(26, 34, 46, 0.6);
             border: 1px solid rgba(42, 52, 68, 0.3);
             border-radius: 50%;
-            width: clamp(30px, 7.5vw, 38px);
-            height: clamp(30px, 7.5vw, 38px);
+            width: clamp(28px, 7vw, 34px);
+            height: clamp(28px, 7vw, 34px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -393,29 +395,90 @@
             cursor: pointer;
             transition: all 0.2s ease;
             padding: 0;
+            flex-shrink: 0;
         }
 
         .music-player .controls button:hover {
             background: rgba(42, 52, 68, 0.6);
             border-color: rgba(90, 106, 122, 0.5);
-            transform: scale(1.05);
+            transform: scale(1.08);
+        }
+
+        .music-player .controls button:active {
+            transform: scale(0.95);
         }
 
         .music-player .controls button svg {
-            width: clamp(14px, 3.5vw, 18px);
-            height: clamp(14px, 3.5vw, 18px);
+            width: clamp(12px, 3.2vw, 15px);
+            height: clamp(12px, 3.2vw, 15px);
             fill: currentColor;
+        }
+
+        .music-player .player-bottom {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2vw, 12px);
+            margin-top: clamp(10px, 2.5vw, 12px);
+        }
+
+        .music-player .time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(8px, 2vw, 9.5px);
+            color: #6a7a8a;
+            font-weight: 400;
+            min-width: clamp(28px, 7vw, 34px);
+            text-align: center;
+            flex-shrink: 0;
+            letter-spacing: 0.5px;
+        }
+
+        .music-player .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(42, 52, 68, 0.5);
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .music-player .progress-bar .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #5a6a7a, #8a9aaa);
+            border-radius: 4px;
+            transition: width 0.1s linear;
+            pointer-events: none;
+        }
+
+        .music-player .volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: clamp(4px, 1vw, 6px);
+            flex-shrink: 0;
+        }
+
+        .music-player .volume-wrap svg {
+            width: clamp(12px, 3vw, 14px);
+            height: clamp(12px, 3vw, 14px);
+            fill: #6a7a8a;
+            flex-shrink: 0;
         }
 
         .music-player .volume-slider {
             width: clamp(40px, 10vw, 60px);
-            height: 3px;
+            height: 4px;
             -webkit-appearance: none;
             appearance: none;
-            background: rgba(42, 52, 68, 0.4);
+            background: rgba(42, 52, 68, 0.5);
             border-radius: 2px;
             outline: none;
             flex-shrink: 0;
+            cursor: pointer;
         }
 
         .music-player .volume-slider::-webkit-slider-thumb {
@@ -424,17 +487,155 @@
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #7a8a9a;
+            background: #8a9aaa;
             cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .music-player .volume-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
         }
 
         .music-player .volume-slider::-moz-range-thumb {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: #7a8a9a;
+            background: #8a9aaa;
             cursor: pointer;
             border: none;
+        }
+
+        .music-player .playlist {
+            margin-top: clamp(10px, 2.5vw, 12px);
+            padding-top: clamp(10px, 2.5vw, 12px);
+            border-top: 1px solid rgba(42, 52, 68, 0.3);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            max-height: clamp(120px, 30vw, 160px);
+            overflow-y: auto;
+        }
+
+        .music-player .playlist::-webkit-scrollbar {
+            width: 3px;
+        }
+        .music-player .playlist::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .music-player .playlist::-webkit-scrollbar-thumb {
+            background: rgba(90, 106, 122, 0.5);
+            border-radius: 3px;
+        }
+
+        .music-player .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: clamp(8px, 2vw, 10px);
+            padding: clamp(5px, 1.5vw, 7px) clamp(6px, 1.5vw, 8px);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .music-player .playlist-item:hover {
+            background: rgba(42, 52, 68, 0.4);
+        }
+
+        .music-player .playlist-item.active {
+            background: rgba(42, 52, 68, 0.6);
+        }
+
+        .music-player .playlist-item .pl-cover {
+            width: clamp(28px, 7vw, 32px);
+            height: clamp(28px, 7vw, 32px);
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+            background: #1a222e;
+        }
+
+        .music-player .playlist-item .pl-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .music-player .playlist-item .pl-name {
+            font-size: clamp(10px, 2.6vw, 12px);
+            font-weight: 500;
+            color: #d0d8e2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
+        .music-player .playlist-item.active .pl-name {
+            color: #ece8e0;
+            font-weight: 600;
+        }
+
+        .music-player .playlist-item .pl-artist {
+            font-size: clamp(8px, 2vw, 9.5px);
+            color: #6a7a8a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+
+        .music-player .playlist-item .pl-status {
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #8a9aaa;
+        }
+
+        .music-player .playlist-item .pl-status svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        .music-player .playlist-item.active .pl-status .playing-icon {
+            display: flex;
+        }
+
+        .music-player .playlist-item .pl-status .playing-icon {
+            display: none;
+            gap: 2px;
+            align-items: flex-end;
+            height: 12px;
+        }
+
+        .music-player .playlist-item .pl-status .playing-icon span {
+            display: block;
+            width: 2px;
+            background: #8a9aaa;
+            border-radius: 1px;
+            animation: eq 0.8s ease-in-out infinite;
+        }
+
+        .music-player .playlist-item .pl-status .playing-icon span:nth-child(1) {
+            height: 40%;
+            animation-delay: 0s;
+        }
+        .music-player .playlist-item .pl-status .playing-icon span:nth-child(2) {
+            height: 80%;
+            animation-delay: 0.2s;
+        }
+        .music-player .playlist-item .pl-status .playing-icon span:nth-child(3) {
+            height: 55%;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes eq {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
         }
 
         .footer-note {
@@ -451,11 +652,11 @@
         }
 
         @media (max-width: 340px) {
-            .social-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
             .skills-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            .social-grid {
+                gap: 8px;
             }
         }
 
@@ -470,7 +671,7 @@
 </head>
 <body>
     
-    <video id="bg-video" autoplay loop muted playsinline>
+    <video id="bg-video" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
         <source src="1.mp4" type="video/mp4">
     </video>
 
@@ -487,10 +688,9 @@
                     </div>
                 </div>
                 <h1 class="profile-name">TheNyxonis</h1>
-                <div class="profile-badge">
-                    <img src="profilebadge.png" alt="badge" />
+                <div class="typing-about">
+                    <span id="typingText"></span><span class="cursor"></span>
                 </div>
-                <div class="role-tag">Senior DevOPS</div>
             </div>
 
             <div class="divider"></div>
@@ -517,78 +717,93 @@
             </div>
 
             <div class="social-grid">
-                <a href="https://github.com/aghodemon" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                    </span>
-                    <span class="social-label">GitHub</span>
+                <a href="https://github.com/aghodemon" class="social-item" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.15 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.62.24 2.85.12 3.15.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                 </a>
 
-                <a href="https://discord.gg/" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.684 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
-                    </span>
-                    <span class="social-label">Discord</span>
+                <a href="https://discord.gg/" class="social-item" target="_blank" rel="noopener" aria-label="Discord">
+                    <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.684 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
                 </a>
 
-                <a href="https://t.me/nyxonis" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm5.83 7.55l-2.35 9.159c-.128.572-.48.746-1.02.466l-3.252-2.373-1.56 1.507c-.143.146-.313.158-.393.158-.08 0-.276-.043-.367-.154l-2.184-2.684-3.863-1.487c-.642-.252-.642-.679.107-.958l13.991-5.078c.535-.192.997.05.767.807z"/></svg>
-                    </span>
-                    <span class="social-label">Telegram</span>
+                <a href="https://t.me/nyxonis" class="social-item" target="_blank" rel="noopener" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm5.83 7.55l-2.35 9.159c-.128.572-.48.746-1.02.466l-3.252-2.373-1.56 1.507c-.143.146-.313.158-.393.158-.08 0-.276-.043-.367-.154l-2.184-2.684-3.863-1.487c-.642-.252-.642-.679.107-.958l13.991-5.078c.535-.192.997.05.767.807z"/></svg>
                 </a>
 
-                <a href="https://aghodemon.github.io" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-                    </span>
-                    <span class="social-label">Website</span>
-                </a>
-            </div>
-
-            <div class="social-grid" style="margin-top: 8px;">
-                <a href="#" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.113.793-.26.793-.577 0-.285-.01-1.04-.015-2.1-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.838 1.237 1.838 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.305-5.467-1.335-5.467-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.004 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.604-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .318.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                    </span>
-                    <span class="social-label">GitLab</span>
-                </a>
-
-                <a href="#" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.08 20.31H3.55V8.97h3.53v11.34zM5.31 7.47c-1.13 0-2.05-.92-2.05-2.05s.92-2.05 2.05-2.05 2.05.92 2.05 2.05-.92 2.05-2.05 2.05zm15.18 12.84h-3.53v-5.68c0-1.35-.03-3.09-1.88-3.09s-2.17 1.47-2.17 2.99v5.78h-3.53V8.97h3.39v1.55h.05c.47-.89 1.62-1.83 3.34-1.83 3.57 0 4.23 2.35 4.23 5.41v6.21z"/></svg>
-                    </span>
-                    <span class="social-label">LinkedIn</span>
-                </a>
-
-                <a href="#" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </span>
-                    <span class="social-label">Twitter</span>
-                </a>
-
-                <a href="#" class="social-item" target="_blank" rel="noopener">
-                    <span class="social-icon">
-                        <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0zm-2 17.5l-5.5-5.5 1.5-1.5 4 4 8-8 1.5 1.5-9.5 9.5z"/></svg>
-                    </span>
-                    <span class="social-label">Rubika</span>
+                <a href="https://aghodemon.github.io" class="social-item" target="_blank" rel="noopener" aria-label="Website">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
                 </a>
             </div>
 
             <div class="music-player">
-                <div class="cover">
-                    <img src="1.png" alt="cover">
+                <div class="player-top">
+                    <div class="cover" id="nowPlayingCover">
+                        <img src="1.webp" alt="cover" class="active" data-index="0">
+                        <img src="profile.png" alt="cover" data-index="1">
+                        <img src="profile.png" alt="cover" data-index="2">
+                        <img src="profile.png" alt="cover" data-index="3">
+                    </div>
+                    <div class="track-info">
+                        <div class="track-name" id="trackName">Nyx Playlist</div>
+                        <div class="track-artist" id="trackArtist">24/7</div>
+                    </div>
+                    <div class="controls">
+                        <button id="playPauseBtn" aria-label="Play/Pause">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                    </div>
                 </div>
-                <div class="track-info">
-                    <div class="track-name">TheNyxonis</div>
-                    <div class="track-artist">TheNyxonis</div>
+                <div class="player-bottom">
+                    <span class="time" id="currentTime">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="time" id="duration">0:00</span>
+                    <div class="volume-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+                    </div>
                 </div>
-                <div class="controls">
-                    <button id="playPauseBtn" aria-label="Play/Pause">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </button>
-                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.01" value="0.6" aria-label="Volume">
+                <div class="playlist" id="playlist">
+                    <div class="playlist-item active" data-index="0">
+                        <img class="pl-cover" src="1.webp" alt="cover">
+                        <div class="pl-info">
+                            <div class="pl-name">Nyx Playlist</div>
+                            <div class="pl-artist">24/7</div>
+                        </div>
+                        <div class="pl-status">
+                            <div class="playing-icon"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="1">
+                        <img class="pl-cover" src="profile.png" alt="cover">
+                        <div class="pl-info">
+                            <div class="pl-name">Nyx Playlist</div>
+                            <div class="pl-artist">Aura</div>
+                        </div>
+                        <div class="pl-status">
+                            <div class="playing-icon"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="2">
+                        <img class="pl-cover" src="profile.png" alt="cover">
+                        <div class="pl-info">
+                            <div class="pl-name">Nyx Playlist</div>
+                            <div class="pl-artist">Dostam Hastan</div>
+                        </div>
+                        <div class="pl-status">
+                            <div class="playing-icon"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="playlist-item" data-index="3">
+                        <img class="pl-cover" src="profile.png" alt="cover">
+                        <div class="pl-info">
+                            <div class="pl-name">Nyx Playlist</div>
+                            <div class="pl-artist">Chera Rafti</div>
+                        </div>
+                        <div class="pl-status">
+                            <div class="playing-icon"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -599,15 +814,32 @@
         </div>
     </div>
 
-    <audio id="bg-music" loop>
-        <source src="1.mp3" type="audio/mpeg">
-    </audio>
+    <audio id="bg-music"></audio>
 
     <script>
         const video = document.getElementById('bg-video');
         const audio = document.getElementById('bg-music');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const volumeSlider = document.getElementById('volumeSlider');
+        const typingText = document.getElementById('typingText');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const trackName = document.getElementById('trackName');
+        const trackArtist = document.getElementById('trackArtist');
+        const coverImgs = document.querySelectorAll('#nowPlayingCover img');
+        const playlistItems = document.querySelectorAll('.playlist-item');
+
+        const playlist = [
+            { src: '1.mp3', cover: '1.webp', name: 'Nyx Playlist', artist: '24/7' },
+            { src: '2.mp3', cover: 'profile.png', name: 'Nyx Playlist', artist: 'Aura' },
+            { src: '3.mp3', cover: 'profile.png', name: 'Nyx Playlist', artist: 'Dostam Hastan' },
+            { src: '4.mp3', cover: 'profile.png', name: 'Nyx Playlist', artist: 'Chera Rafti' }
+        ];
+
+        let currentIndex = 0;
+        let isPlaying = true;
 
         video.volume = 0;
         video.loop = true;
@@ -616,10 +848,37 @@
         video.playsInline = true;
 
         audio.volume = 0.6;
-        audio.loop = true;
-        audio.autoplay = true;
+
+        function loadTrack(index, autoplay) {
+            currentIndex = index;
+            const track = playlist[index];
+            audio.src = track.src;
+            trackName.textContent = track.name;
+            trackArtist.textContent = track.artist;
+
+            coverImgs.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+
+            playlistItems.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+            });
+
+            progressFill.style.width = '0%';
+            currentTimeEl.textContent = '0:00';
+            durationEl.textContent = '0:00';
+
+            if (autoplay) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+                }).catch(() => {});
+            }
+        }
 
         video.play().catch(() => {});
+
+        loadTrack(0, true);
         audio.play().catch(() => {
             document.addEventListener('click', function playOnClick() {
                 video.play().catch(() => {});
@@ -628,18 +887,39 @@
             }, { once: true });
         });
 
-        setInterval(() => {
-            if (video.ended) {
-                video.currentTime = 0;
-                video.play().catch(() => {});
-            }
-            if (audio.ended) {
-                audio.currentTime = 0;
-                audio.play().catch(() => {});
-            }
-        }, 500);
+        audio.addEventListener('ended', function() {
+            const nextIndex = (currentIndex + 1) % playlist.length;
+            loadTrack(nextIndex, true);
+        });
 
-        let isPlaying = true;
+        function formatTime(sec) {
+            if (isNaN(sec) || !isFinite(sec)) return '0:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return m + ':' + (s < 10 ? '0' : '') + s;
+        }
+
+        function updateProgress() {
+            if (audio.duration && isFinite(audio.duration)) {
+                const pct = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = pct + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+                durationEl.textContent = formatTime(audio.duration);
+            }
+        }
+
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('loadedmetadata', updateProgress);
+        audio.addEventListener('durationchange', updateProgress);
+
+        progressBar.addEventListener('click', function(e) {
+            if (!audio.duration || !isFinite(audio.duration)) return;
+            const rect = progressBar.getBoundingClientRect();
+            const pct = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = pct * audio.duration;
+            updateProgress();
+        });
+
         playPauseBtn.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play().catch(() => {});
@@ -656,6 +936,19 @@
             audio.volume = parseFloat(this.value);
         });
 
+        playlistItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.index);
+                if (idx === currentIndex && !audio.paused) {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+                    isPlaying = false;
+                } else {
+                    loadTrack(idx, true);
+                }
+            });
+        });
+
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && audio.paused && isPlaying) {
                 audio.play().catch(() => {});
@@ -664,6 +957,46 @@
                 video.play().catch(() => {});
             }
         });
+
+        const phrases = [
+            "Full Stack Developer",
+            "Java Architect",
+            "Minecraft Developer",
+            "DevOPS Engineer",
+            "Redis & MongoDB Engineer",
+            "Develop & Coffee"
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const current = phrases[phraseIndex];
+
+            if (!isDeleting) {
+                typingText.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === current.length) {
+                    isDeleting = true;
+                    setTimeout(typeLoop, 1600);
+                    return;
+                }
+                setTimeout(typeLoop, 70);
+            } else {
+                typingText.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length;
+                    setTimeout(typeLoop, 400);
+                    return;
+                }
+                setTimeout(typeLoop, 40);
+            }
+        }
+
+        typeLoop();
     </script>
 
 </body>
