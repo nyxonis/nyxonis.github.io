@@ -233,6 +233,41 @@
             z-index: 1;
         }
 
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: clamp(4px, 1.5vw, 8px);
+            position: relative;
+            z-index: 1;
+            margin-bottom: clamp(12px, 3vw, 16px);
+        }
+
+        .skill-item {
+            background: rgba(18, 24, 34, 0.5);
+            border: 1px solid rgba(42, 52, 68, 0.3);
+            border-radius: clamp(10px, 3vw, 14px);
+            padding: clamp(8px, 2.5vw, 12px) clamp(4px, 1.5vw, 8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .skill-item:hover {
+            background: rgba(26, 34, 46, 0.7);
+            border-color: rgba(90, 106, 122, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-item img {
+            width: clamp(20px, 6vw, 28px);
+            height: clamp(20px, 6vw, 28px);
+            object-fit: contain;
+        }
+
         .social-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -419,6 +454,9 @@
             .social-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-height: 620px) and (max-width: 500px) {
@@ -456,6 +494,27 @@
             </div>
 
             <div class="divider"></div>
+
+            <div class="skills-grid">
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=java" alt="Java" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=spring" alt="Spring" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=python" alt="Python" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=react" alt="React" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=nextjs" alt="Next.js" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=php" alt="PHP" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=docker" alt="Docker" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=redis" alt="Redis" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=postgres" alt="PostgreSQL" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=git" alt="Git" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=linux" alt="Linux" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=maven" alt="Maven" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ" /></div>
+                <div class="skill-item"><img src="https://skillicons.dev/icons?i=vscode" alt="VSCode" /></div>
+            </div>
 
             <div class="social-grid">
                 <a href="https://github.com/aghodemon" class="social-item" target="_blank" rel="noopener">
@@ -519,7 +578,7 @@
 
             <div class="music-player">
                 <div class="cover">
-                    <img src="cover.jpg" alt="cover">
+                    <img src="1.png" alt="cover">
                 </div>
                 <div class="track-info">
                     <div class="track-name">TheNyxonis</div>
@@ -541,7 +600,7 @@
     </div>
 
     <audio id="bg-music" loop>
-        <source src="thenyxonis.mp3" type="audio/mpeg">
+        <source src="1.mp3" type="audio/mpeg">
     </audio>
 
     <script>
